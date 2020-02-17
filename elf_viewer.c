@@ -6,11 +6,13 @@
 #include <unistd.h>
 
 int main(int argc, char **argv) {
-	printf("%s\n", argv[0]);
-	
+	if (argc < 2) {
+		printf("Invalid argument\n");
+		return -1;
+	}
 	Elf32_Ehdr elf_hdr;
 
-	int32_t ret_val = open(argv[0], O_RDONLY);
+	int32_t ret_val = open(argv[1], O_RDONLY);
 	
 	if (ret_val < 0) {
 	    perror("");
